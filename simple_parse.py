@@ -16,7 +16,8 @@ class FolderParser:
     def check_file(self, file_name, check_words):
         if file_name.endswith('.txt') is False:
             return
-        fp = open(file_name, 'r', encoding="utf-8")
+        print('IN FILE ', file_name)
+        fp = open(file_name, 'r', encoding='utf8', errors='ignore') # , encoding="utf-8"
         self.counted_tags[file_name] = {}
         for line in fp:
             for el in check_words:

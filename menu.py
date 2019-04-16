@@ -12,6 +12,7 @@ from obtain_synonym import extract_synonyms
 from classify_popup import *
 import json
 import os
+from summarizer import *
 
 # class TagPopup(QtWidgets.QWidget):
 #     def __init__(self, name):
@@ -230,6 +231,10 @@ class Ui_MainWindow(object):
         # print('TAGS TO SEARCH FOR ARE : ', tags)
         tags_list = tags.split(',')
         tags_list = [t.lower().strip() for t in tags_list]
+        # print('TAGS LIST IS ', tags_list)
+        if len(tags_list) == 1:
+            if tags_list[0] == '':
+                return
         all_syns = []
         for el in tags_list:
             syn_list = self._obtain_synonyms(el)
@@ -301,8 +306,16 @@ class Ui_MainWindow(object):
     def _update_user_map(self, file_name, new_tags):
         self._user_map[file_name] = new_tags
 
-    # def update_tags(self, file, new_tags):
-    #     for folder in self.parsed_files:
+    def _get_current_file_tags(self, file_search):
+        current_tags = []
+        for folder in self.parsed_files:
+            for file in folder:
+                if file == file_search:
+                    print('FOUND FILE ', file)
+                    for tag in folder[file]:
+                        if folder[file][tag] > 0:
+                            current_tags.append(tag)
+        return current_tags
 
     def _refresh_user_defined(self):
         self.listWidget_2.clear()
@@ -323,21 +336,34 @@ class Ui_MainWindow(object):
                 # print('AFTER POP ', folder)
         self._put_algorithm_defined_list()
 
+    @staticmethod
+    def _get_text_summary(file_name):
+        return obtain_summary(file_name)
+
     def _build_popup(self, item):
         # files_to_classify = self._get_unclassified()
+        print('ITEM TExT IS ', item.text())
+        file_name_end = item.text().find('->')
+        file_name = item.text()[:file_name_end]
+        current_tags = self._get_current_file_tags(file_name)
+        summary = self._get_text_summary(file_name)
         self.popup = Ui_Dialog()
         self.Dialog = QtWidgets.QDialog()
         self.popup.setupUi(self.Dialog)
+        self.popup.set_classified_tags(current_tags)
+        # self.popup.set_classified_tags(item_tags)
+        self.popup.set_summary(summary)
         self.Dialog.show()
         self.Dialog.setWindowTitle(item.text())
         self.Dialog.exec_()
-        print('EDIT TEXT WAS ', self.popup.d_textEdit_2.toPlainText())
-        new_tags = self._list_from_comma_text(self.popup.d_textEdit_2.toPlainText())
-        file_name_end = item.text().find('->')
-        file_name = item.text()[:file_name_end]
-        self._update_user_map(file_name, new_tags)
-        print('Chosen new tags ', new_tags)
-        if new_tags != '':
+        print('EDIT TEXT WAS ', self.popup.textEdit_2.toPlainText())
+        new_tags = self._list_from_comma_text(self.popup.textEdit_2.toPlainText())
+        if len(new_tags) == 1:
+            if new_tags[0] == '':
+                return
+        if len(new_tags) > 0:
+            self._update_user_map(file_name, new_tags)
+            print('Chosen new tags ', new_tags)
             self._refresh_algorithm_defined(file_name)
             self._refresh_user_defined()
         # self.tag_popup = TagPopup(' ')
@@ -356,3 +382,4 @@ class Ui_MainWindow(object):
         except:
             self._user_map = {}
             self._refresh_user_defined()
+            self.listWidget.clear()

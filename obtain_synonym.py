@@ -11,6 +11,8 @@ def extract_synonyms(word, how_many):
     all_li = soup.find("ul", {"class": "css-1lc0dpe et6tpn80"})
     cnt = 0
     syn_list = []
+    if all_li is None:
+        return []
     for el in all_li:
         print(el.get_text())
         syn_list.append(el.get_text())
