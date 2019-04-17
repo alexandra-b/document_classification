@@ -1,0 +1,18 @@
+Python is an interpreted, high-level, general-purpose programming language. Created by Guido van Rossum and first released in 1991, Python has a design philosophy that emphasizes code readability, notably using significant whitespace. It provides constructs that enable clear programming on both small and large scales.[26] Van Rossum led the language community until July 2018.[27][28]
+
+Python is dynamically typed and garbage-collected. It supports multiple programming paradigms, including procedural, object-oriented, and functional programming. Python features a comprehensive standard library, and is referred to as "batteries included".[29]
+
+Python interpreters are available for many operating systems. CPython, the reference implementation of Python, is open-source software[30] and has a community-based development model. Python and CPython are managed by the non-profit Python Software Foundation. 
+Python is a multi-paradigm programming language. Object-oriented programming and structured programming are fully supported, and many of its features support functional programming and aspect-oriented programming (including by metaprogramming[42] and metaobjects (magic methods)).[43] Many other paradigms are supported via extensions, including design by contract[44][45] and logic programming.[46]
+
+Python uses dynamic typing, and a combination of reference counting and a cycle-detecting garbage collector for memory management. It also features dynamic name resolution (late binding), which binds method and variable names during program execution.
+
+Python's design offers some support for functional programming in the Lisp tradition. It has filter, map, and reduce functions; list comprehensions, dictionaries, sets and generator expressions.[47] The standard library has two modules (itertools and functools) that implement functional tools borrowed from Haskell and Standard ML.[48]
+
+The language's core philosophy is summarized in the document The Zen of Python (PEP 20), which includes aphorisms such as:[49]
+
+    Beautiful is better than ugly
+    Explicit is better than implicit
+    Simple is better than complex
+    Complex is better than complicated
+    Readability counts

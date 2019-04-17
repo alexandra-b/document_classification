@@ -1,0 +1,6 @@
+A computer program is a collection of instructions that performs a specific task when executed by a computer. A computer requires programs to function.
+
+A computer program is usually written by a computer programmer in a programming language. From the program in its human-readable form of source code, a compiler can derive machine code—a form consisting of instructions that the computer can directly execute. Alternatively, a computer program may be executed with the aid of an interpreter.
+
+A collection of computer programs, libraries, and related data are referred to as software. Computer programs may be categorized along functional lines, such as application software and system software. The underlying method used for some calculation or manipulation is known as an algorithm. 
+The earliest programmable machines preceded the invention of the digital computer. In 1801, Joseph-Marie Jacquard devised a loom that would weave a pattern by following a series of perforated cards. Patterns could be woven and repeated by arranging the cards.
